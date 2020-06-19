@@ -1,0 +1,33 @@
+﻿@page "/"
+
+@inject LabelUpdateService service
+
+<EditForm Model="model" OnValidSubmit="UpdateLabel">
+    <label for="labelInput">Label Text</label>
+    <InputText class="form-text" @bind-Value="model.Text" type="text" id="labelInput" />
+
+    <button class="btn" type="submit">Update</button>
+    <button class="btn" @onclick="ClearLabel">ClearLabel</button>
+</EditForm>
+
+
+@code {
+    LabelUpdateModel model = new LabelUpdateModel();
+
+    protected override async Task OnInitializedAsync()
+    {
+        model.Text = await service.GetCurrentLabel().ConfigureAwait(false);
+    }
+
+    public async Task UpdateLabel()
+    {
+        await service.UpdateLabel(model.Text);
+    }
+
+    public async Task ClearLabel()
+    {
+        model.Text = "";
+
+        await service.UpdateLabel(model.Text);
+    }
+}
