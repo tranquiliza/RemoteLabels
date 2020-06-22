@@ -5,13 +5,17 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteLabels.WebHost", "RemoteLabels.WebHost\RemoteLabels.WebHost.csproj", "{FBF8FB68-3D71-47BE-8E08-06952A8DFFFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteLabels.Sql", "RemoteLabels.Sql\RemoteLabels.Sql.csproj", "{459A8534-403E-46B8-9B38-C2C6A901240D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteLabels.Sql", "RemoteLabels.Sql\RemoteLabels.Sql.csproj", "{459A8534-403E-46B8-9B38-C2C6A901240D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{3AAB2282-78C2-4C99-BBF6-7F849F1AFB46}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "RemoteLabels.Database", "RemoteLabels.Database\RemoteLabels.Database.sqlproj", "{12ABA328-D26D-427F-939D-EB23C17155D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteLabels.Core", "RemoteLabels.Core\RemoteLabels.Core.csproj", "{830BFC0B-4A5D-45BB-966C-E4B0E32152B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteLabels.Core", "RemoteLabels.Core\RemoteLabels.Core.csproj", "{830BFC0B-4A5D-45BB-966C-E4B0E32152B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteLabels.WebApi", "RemoteLabels.WebApi\RemoteLabels.WebApi.csproj", "{0A5B8FAF-7ACC-475D-9E99-230653534885}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteLabels.FileSystem", "RemoteLabels.FileSystem\RemoteLabels.FileSystem.csproj", "{68D22169-5764-4B0E-9276-44EE0C51E4F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +41,14 @@ Global
 		{830BFC0B-4A5D-45BB-966C-E4B0E32152B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{830BFC0B-4A5D-45BB-966C-E4B0E32152B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{830BFC0B-4A5D-45BB-966C-E4B0E32152B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A5B8FAF-7ACC-475D-9E99-230653534885}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A5B8FAF-7ACC-475D-9E99-230653534885}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A5B8FAF-7ACC-475D-9E99-230653534885}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A5B8FAF-7ACC-475D-9E99-230653534885}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68D22169-5764-4B0E-9276-44EE0C51E4F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68D22169-5764-4B0E-9276-44EE0C51E4F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68D22169-5764-4B0E-9276-44EE0C51E4F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68D22169-5764-4B0E-9276-44EE0C51E4F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

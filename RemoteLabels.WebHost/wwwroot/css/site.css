@@ -181,3 +181,7 @@ app {
         display: block;
     }
 }
+
+#mapid {
+    height: 800px;
+}

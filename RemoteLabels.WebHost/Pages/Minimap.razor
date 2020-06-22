@@ -1,14 +1,51 @@
-﻿@page "/Minimap"
+﻿@inject IJSRuntime js
+@inject MinimapUpdateService minimapService
+@using System.Threading;
+@page "/Minimap"
+@implements IDisposable
 
-<p>
-    Latitude: 
-</p>
+<div id="mapid">
 
-<p>
-    Longitude: 
-</p>
+</div>
 
 @code {
-    private decimal Lat;
-    private decimal Lon;
+    private double Latitude = 0;
+    private double Longitude = 0;
+
+    private Timer Timer;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await js.InvokeVoidAsync("LoadMap", Latitude, Longitude);
+            StartTimer();
+        }
+    }
+
+    private void StartTimer()
+    {
+        try
+        {
+            Timer = new Timer(new TimerCallback(async _ =>
+            {
+                await minimapService.UpdatePosition("tranquiliza");
+                Latitude = minimapService.LatestRecordedPosition.Latitude;
+                Longitude = minimapService.LatestRecordedPosition.Longitude;
+                await js.InvokeVoidAsync("UpdateView", Latitude, Longitude);
+            }), null, 0, 5000);
+        }
+        catch (Exception ex)
+        {
+
+            throw;
+        }
+
+
+    }
+
+    public void Dispose()
+    {
+        Timer?.Dispose();
+    }
 }

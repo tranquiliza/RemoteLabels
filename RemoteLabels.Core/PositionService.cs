@@ -17,17 +17,23 @@ namespace RemoteLabels.Core
             this.dateTimeProvider = dateTimeProvider;
         }
 
-        public async Task SavePosition(decimal lat, decimal lon, string username)
+        public async Task SavePosition(double lat, double lon, double? alt, string username)
         {
             var recordedPosition = new RecordedPosition
             {
                 Latitude = lat,
                 Longitude = lon,
+                Altitude = alt ?? 0,
                 TimeStamp = dateTimeProvider.UtcNow,
                 Username = username
             };
 
             await positionRepository.InsertPosition(recordedPosition).ConfigureAwait(false);
+        }
+
+        public async Task<RecordedPosition> GetLatestPositionForUser(string username)
+        {
+            return await positionRepository.GetLatestPositionForUser(username).ConfigureAwait(false);
         }
     }
 }

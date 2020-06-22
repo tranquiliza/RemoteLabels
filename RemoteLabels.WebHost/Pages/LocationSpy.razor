@@ -1,39 +1,38 @@
 ﻿@page "/LocationSpy"
 
 @inject IJSRuntime jsRuntime
-@inject LocationSpyService service
 @inject IPositionService positionService
+@using System.Threading;
 
 <p>Latitude : @Latitude</p>
 <p>Longitude: @Longitude</p>
 
-<button @onclick="GetCoordinates">Click!</button>
-
 @code {
-    private decimal Latitude;
-    private decimal Longitude;
+    private double Latitude;
+    private double Longitude;
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override void OnAfterRender(bool firstRender)
     {
         if (firstRender)
         {
-            await service.Run(GetCoordinates);
+            StartTimer();
         }
     }
 
+    private void StartTimer()
+    {
+        var timer = new Timer(new TimerCallback(async _ =>
+        {
+            await jsRuntime.InvokeVoidAsync("GetCoordinates", DotNetObjectReference.Create(this));
+        }), null, 0, 5000);
+    }
+
     [JSInvokable]
-    public async Task UpdateLocation(decimal lat, decimal lon)
+    public async Task UpdateLocation(double lat, double lon)
     {
         Latitude = lat;
         Longitude = lon;
 
-        await positionService.SavePosition(lat, lon, "tranquiliza");
-
         StateHasChanged();
-    }
-
-    private async Task GetCoordinates()
-    {
-        await jsRuntime.InvokeVoidAsync("GetCoordinates", DotNetObjectReference.Create(this));
     }
 }

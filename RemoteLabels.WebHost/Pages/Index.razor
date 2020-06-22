@@ -1,6 +1,6 @@
 ﻿@page "/"
 
-@inject LabelUpdateService service
+@*@inject LabelRepository service
 
 <EditForm Model="model" OnValidSubmit="UpdateLabel">
     <label for="labelInput">Label Text</label>
@@ -30,4 +30,4 @@
 
         await service.UpdateLabel(model.Text);
     }
-}
+}*@

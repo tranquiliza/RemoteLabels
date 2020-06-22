@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RemoteLabels.Core\RemoteLabels.Core.csproj" />
+    <ProjectReference Include="..\RemoteLabels.FileSystem\RemoteLabels.FileSystem.csproj" />
+    <ProjectReference Include="..\RemoteLabels.Sql\RemoteLabels.Sql.csproj" />
+  </ItemGroup>
+
+
+</Project>

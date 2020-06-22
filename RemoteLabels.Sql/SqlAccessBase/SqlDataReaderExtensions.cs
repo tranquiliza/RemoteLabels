@@ -35,6 +35,9 @@ namespace RemoteLabels.Sql
         public static DateTime GetDateTime(this SqlDataReader rdr, string column)
             => GetTypedValue(rdr, column, Convert.ToDateTime);
 
+        public static double GetDouble(this SqlDataReader rdr, string column)
+            => GetTypedValue(rdr, column, Convert.ToDouble);
+
         public static byte[] GetByteArray(this SqlDataReader rdr, string column)
             => GetTypedValue(rdr, column, ConvertByteArray);
 

@@ -4,9 +4,4 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\RemoteLabels.Core\RemoteLabels.Core.csproj" />
-    <ProjectReference Include="..\RemoteLabels.Sql\RemoteLabels.Sql.csproj" />
-  </ItemGroup>
-
 </Project>

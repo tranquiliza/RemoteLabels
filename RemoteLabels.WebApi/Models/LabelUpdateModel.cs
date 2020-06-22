@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RemoteLabels.WebHost.Data
+namespace RemoteLabels.WebApi.Models
 {
     public class LabelUpdateModel
     {
