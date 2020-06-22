@@ -1,6 +1,6 @@
 ﻿@page "/"
 
-@*@inject LabelRepository service
+@inject LabelService service
 
 <EditForm Model="model" OnValidSubmit="UpdateLabel">
     <label for="labelInput">Label Text</label>
@@ -21,13 +21,13 @@
 
     public async Task UpdateLabel()
     {
-        await service.UpdateLabel(model.Text);
+        await service.UpdateLabel(model);
     }
 
     public async Task ClearLabel()
     {
         model.Text = "";
 
-        await service.UpdateLabel(model.Text);
+        await service.UpdateLabel(model);
     }
-}*@
+}

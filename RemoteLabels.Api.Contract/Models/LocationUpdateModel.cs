@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RemoteLabels.WebApi.Models
+namespace RemoteLabels.Api.Contract.Models
 {
     public class LocationUpdateModel
     {

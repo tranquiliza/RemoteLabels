@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteLabels.WebApi", "Remo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteLabels.FileSystem", "RemoteLabels.FileSystem\RemoteLabels.FileSystem.csproj", "{68D22169-5764-4B0E-9276-44EE0C51E4F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteLabels.SignalR.Contract", "RemoteLabels.SignalR.Contract\RemoteLabels.SignalR.Contract.csproj", "{396EA419-AC0E-4F1D-9099-650C2C949769}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteLabels.Api.Contract", "RemoteLabels.Api.Contract\RemoteLabels.Api.Contract.csproj", "{CE00797A-6EE5-4B1D-A070-9164401BE380}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,14 @@ Global
 		{68D22169-5764-4B0E-9276-44EE0C51E4F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68D22169-5764-4B0E-9276-44EE0C51E4F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68D22169-5764-4B0E-9276-44EE0C51E4F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{396EA419-AC0E-4F1D-9099-650C2C949769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{396EA419-AC0E-4F1D-9099-650C2C949769}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{396EA419-AC0E-4F1D-9099-650C2C949769}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{396EA419-AC0E-4F1D-9099-650C2C949769}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE00797A-6EE5-4B1D-A070-9164401BE380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE00797A-6EE5-4B1D-A070-9164401BE380}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE00797A-6EE5-4B1D-A070-9164401BE380}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE00797A-6EE5-4B1D-A070-9164401BE380}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

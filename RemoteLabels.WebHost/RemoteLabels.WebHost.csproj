@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RemoteLabels.Api.Contract\RemoteLabels.Api.Contract.csproj" />
+    <ProjectReference Include="..\RemoteLabels.SignalR.Contract\RemoteLabels.SignalR.Contract.csproj" />
+  </ItemGroup>
+
 </Project>

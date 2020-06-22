@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace RemoteLabels.WebHost
 {
-    public class ApplicationSettings : IApplicationSettings
+    public interface IApplicationConfiguration
     {
-        public string FilePath => "labels";
+        string ApiUrl { get; }
     }
 }

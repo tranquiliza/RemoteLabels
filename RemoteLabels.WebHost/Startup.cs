@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
@@ -29,8 +30,11 @@ namespace RemoteLabels.WebHost
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddHttpClient();
 
-            services.AddSingleton<MinimapUpdateService>();
+            services.AddSingleton<IApplicationConfiguration, ApplicationConfiguration>();
+            services.AddSingleton<LabelService>();
+            services.AddSingleton<MinimapService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

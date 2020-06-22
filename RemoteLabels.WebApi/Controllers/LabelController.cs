@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RemoteLabels.Api.Contract.Models;
 using RemoteLabels.Core;
 using RemoteLabels.FileSystem;
-using RemoteLabels.WebApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

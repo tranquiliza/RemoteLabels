@@ -1,12 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RemoteLabels.Api.Contract\RemoteLabels.Api.Contract.csproj" />
     <ProjectReference Include="..\RemoteLabels.Core\RemoteLabels.Core.csproj" />
     <ProjectReference Include="..\RemoteLabels.FileSystem\RemoteLabels.FileSystem.csproj" />
+    <ProjectReference Include="..\RemoteLabels.SignalR.Contract\RemoteLabels.SignalR.Contract.csproj" />
     <ProjectReference Include="..\RemoteLabels.Sql\RemoteLabels.Sql.csproj" />
   </ItemGroup>
 

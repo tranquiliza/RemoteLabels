@@ -1,51 +1,27 @@
-﻿@inject IJSRuntime js
-@inject MinimapUpdateService minimapService
-@using System.Threading;
-@page "/Minimap"
-@implements IDisposable
+﻿@page "/Minimap"
+@using RemoteLabels.SignalR.Contract;
+
+@inject MinimapService service
+@inject IJSRuntime js
 
 <div id="mapid">
 
 </div>
 
 @code {
-    private double Latitude = 0;
-    private double Longitude = 0;
-
-    private Timer Timer;
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await js.InvokeVoidAsync("LoadMap", Latitude, Longitude);
-            StartTimer();
+            await service.InitializeSignalRClient(HandleLocationUpdated);
+
+            var latestPosition = await service.GetLatestPosition();
+            await js.InvokeVoidAsync("LoadMap", latestPosition.Latitude, latestPosition.Longitude);
         }
     }
 
-    private void StartTimer()
+    private async Task HandleLocationUpdated(object sender, LocationUpdatedEventArgs e)
     {
-        try
-        {
-            Timer = new Timer(new TimerCallback(async _ =>
-            {
-                await minimapService.UpdatePosition("tranquiliza");
-                Latitude = minimapService.LatestRecordedPosition.Latitude;
-                Longitude = minimapService.LatestRecordedPosition.Longitude;
-                await js.InvokeVoidAsync("UpdateView", Latitude, Longitude);
-            }), null, 0, 5000);
-        }
-        catch (Exception ex)
-        {
-
-            throw;
-        }
-
-
-    }
-
-    public void Dispose()
-    {
-        Timer?.Dispose();
+        await js.InvokeVoidAsync("UpdateView", e.Latitude, e.Longitude);
     }
 }

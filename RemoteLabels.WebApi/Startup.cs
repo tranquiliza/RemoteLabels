@@ -30,6 +30,8 @@ namespace RemoteLabels.WebApi
         {
             services.AddControllers();
 
+            services.AddSignalR();
+
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
             services.AddSingleton<IPositionRepository, PositionRepository>();
             services.AddSingleton<IPositionService, PositionService>();
@@ -54,6 +56,7 @@ namespace RemoteLabels.WebApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<Hubs.PositionHub>(SignalR.Contract.SignalRClient.HUBURL);
             });
         }
     }
