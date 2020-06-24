@@ -13,24 +13,27 @@ window.LocationCallback = function (result) {
 }
 
 var map;
+var marker = null;
 
 window.LoadMap = function (lat, lon) {
-    map = L.map('mapid').setView([lat, lon], 13);
+    map = L.map('mapid').setView([lat, lon], 17);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 24,
-        id: 'tranquiliza/ckboajc9e362c1ipgsi30x8ar',
+        id: 'tranquiliza/ckbtjmlec0y0o1iqqvbbonelf',
         tileSize: 512,
         zoomOffset: -1,
         accessToken: 'pk.eyJ1IjoidHJhbnF1aWxpemEiLCJhIjoiY2tibW5keW9hMG9kYzJ1cXQ2djRvY3l6NSJ9.AJiyP9uGMSYOFJSNC8MEEQ'
     }).addTo(map);
+
+    marker = L.circleMarker([lat, lon], {
+        color: '#3388ff'
+    }).addTo(map);
 }
 
-var marker = null;
-
 window.UpdateView = function (lat, lon) {
-    map.setView([lat, lon], 18)
+    map.setView([lat, lon], 17)
 
     if (marker === null) {
         marker = L.circleMarker([lat, lon], {
