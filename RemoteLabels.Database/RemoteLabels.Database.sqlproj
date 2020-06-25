@@ -66,6 +66,8 @@
     <Build Include="Security\Schemas\Core.sql" />
     <Build Include="Procedures\InsertPosition.sql" />
     <Build Include="Procedures\GetLatestPositionForUser.sql" />
+    <Build Include="Tables\Bitrate.sql" />
+    <Build Include="Procedures\InsertBitrate.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="RemoteLabels.Database.refactorlog" />

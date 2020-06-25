@@ -9,7 +9,5 @@ namespace RemoteLabels.SignalR.Contract
         public const string REGISTER = "Register";
 
         public const string UPDATELOCATION = "UpdateLocation";
-
-        //public const string SEND = "SendMessage";
     }
 }

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [Core].[Position]
 (
-	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
+	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [Latitude] FLOAT NOT NULL, 
     [Longitude] FLOAT NOT NULL, 
     [Altitude] FLOAT NOT NULL, 

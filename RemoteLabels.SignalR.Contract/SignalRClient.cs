@@ -45,7 +45,6 @@ namespace RemoteLabels.SignalR.Contract
                 _hubConnection = new HubConnectionBuilder()
                     .WithUrl(_hubUrl)
                     .Build();
-                Console.WriteLine("SignalRClient: calling Start()");
 
                 // add handler for receiving messages
                 _hubConnection.On<string, double, double, double?>(Methods.UPDATELOCATION, HandleUpdateLocation);
@@ -53,7 +52,6 @@ namespace RemoteLabels.SignalR.Contract
                 // start the connection
                 await _hubConnection.StartAsync();
 
-                Console.WriteLine("SignalRClient: Start returned");
                 _started = true;
 
                 // register user on hub to let other clients know they've joined
@@ -63,7 +61,6 @@ namespace RemoteLabels.SignalR.Contract
 
         private void HandleUpdateLocation(string username, double latitude, double longitude, double? altitude)
         {
-            // raise an event to subscribers
             LocationUpdated?.Invoke(this, new LocationUpdatedEventArgs(username, latitude, longitude, altitude));
         }
 
@@ -73,13 +70,7 @@ namespace RemoteLabels.SignalR.Contract
         {
             if (_started)
             {
-                // disconnect the client
                 await _hubConnection.StopAsync();
-                // There is a bug in the mono/SignalR client that does not
-                // close connections even after stop/dispose
-                // see https://github.com/mono/mono/issues/18628
-                // this means the demo won't show "xxx left the chat" since 
-                // the connections are left open
                 await _hubConnection.DisposeAsync();
                 _hubConnection = null;
                 _started = false;
@@ -88,7 +79,6 @@ namespace RemoteLabels.SignalR.Contract
 
         public async ValueTask DisposeAsync()
         {
-            Console.WriteLine("SignalRClient: Disposing");
             await StopAsync();
         }
     }
@@ -99,24 +89,4 @@ namespace RemoteLabels.SignalR.Contract
     /// <param name="sender">the SignalRclient instance</param>
     /// <param name="e">Event args</param>
     public delegate void LocationUpdatedEventHandler(object sender, LocationUpdatedEventArgs e);
-
-    /// <summary>
-    /// Message received argument class
-    /// </summary>
-    public class LocationUpdatedEventArgs : EventArgs
-    {
-        //string, double, double, double?
-        public LocationUpdatedEventArgs(string username, double latitude, double longitude, double? altitude)
-        {
-            Username = username;
-            Latitude = latitude;
-            Longitude = longitude;
-            Altitude = altitude;
-        }
-
-        public string Username { get; }
-        public double Latitude { get; }
-        public double Longitude { get; }
-        public double? Altitude { get; }
-    }
 }
