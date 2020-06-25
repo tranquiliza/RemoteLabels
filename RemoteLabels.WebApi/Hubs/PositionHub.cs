@@ -10,15 +10,17 @@ namespace RemoteLabels.WebApi.Hubs
 {
     public class PositionHub : Hub
     {
-        private static readonly Dictionary<string, string> userLookup = new Dictionary<string, string>();
+        private readonly IPositionHubService positionHubService;
+
+        public PositionHub(IPositionHubService positionHubService)
+        {
+            this.positionHubService = positionHubService;
+        }
 
         public Task Register(string username)
         {
             var currentId = Context.ConnectionId;
-            if (!userLookup.ContainsKey(currentId))
-            {
-                userLookup.Add(currentId, username);
-            }
+            positionHubService.AddUser(currentId, username);
 
             return Task.CompletedTask;
         }
@@ -30,17 +32,14 @@ namespace RemoteLabels.WebApi.Hubs
 
         public override Task OnConnectedAsync()
         {
-            Console.WriteLine("Connected");
             return base.OnConnectedAsync();
         }
 
         public override async Task OnDisconnectedAsync(Exception e)
         {
-            Console.WriteLine($"Disconnected {e?.Message} {Context.ConnectionId}");
-            // try to get connection
             string id = Context.ConnectionId;
 
-            userLookup.Remove(id);
+            positionHubService.RemoveUser(id);
 
             await base.OnDisconnectedAsync(e);
         }

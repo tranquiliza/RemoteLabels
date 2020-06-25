@@ -39,6 +39,7 @@ namespace RemoteLabels.WebApi
             services.AddSingleton<IApplicationSettings, ApplicationSettings>();
             services.AddSingleton<IBitrateService, BitrateService>();
             services.AddSingleton<IBitrateRepository, BitrateRepository>();
+            services.AddSingleton<IPositionHubService, PositionHubService>();
 
             var connProvider = new ConnectionStringProvider(@"Data Source=localhost\sqlexpress;Initial Catalog=StreamLabelApiDevelopment;Integrated Security=True");
             services.AddSingleton<IConnectionStringProvider>(connProvider);

@@ -17,11 +17,13 @@ namespace RemoteLabels.WebApi.Controlles
     {
         private readonly IPositionService positionService;
         private readonly IHubContext<PositionHub> positionHub;
+        private readonly IPositionHubService positionHubService;
 
-        public LocationController(IPositionService positionService, IHubContext<PositionHub> positionHub)
+        public LocationController(IPositionService positionService, IHubContext<PositionHub> positionHub, IPositionHubService positionHubService)
         {
             this.positionService = positionService;
             this.positionHub = positionHub;
+            this.positionHubService = positionHubService;
         }
 
         [HttpPost("{username}")]
@@ -29,7 +31,8 @@ namespace RemoteLabels.WebApi.Controlles
         {
             await positionService.SavePosition(locationUpdateModel.Latitude, locationUpdateModel.Longitude, locationUpdateModel.Altitude, username).ConfigureAwait(false);
 
-            await positionHub.Clients.All.SendAsync(Methods.UPDATELOCATION, username, locationUpdateModel.Latitude, locationUpdateModel.Longitude, locationUpdateModel.Altitude).ConfigureAwait(false);
+            var connectionIds = positionHubService.GetConnectionIdsRelatedTo(username);
+            await positionHub.Clients.Clients(connectionIds).SendAsync(Methods.UPDATELOCATION, username, locationUpdateModel.Latitude, locationUpdateModel.Longitude, locationUpdateModel.Altitude).ConfigureAwait(false);
 
             return Ok();
         }
